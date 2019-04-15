@@ -26,6 +26,7 @@ $(document).ready(function(){
 });
 
 function calculateDwell(){
+    dwell = [];
     for(i = 0;i < up.length;i++){
         dwell.push(up[i] - down[i]);
     }
@@ -41,6 +42,7 @@ function calculateFlight(){
     var i = 1;
     var j = 0;
     var k = 0;
+    flight = [];
     while(i < down.length){
         var value = down[i++] - up[j++];
         if(value < 0){
@@ -92,5 +94,15 @@ function submitForm(){
     $("#flightSD").val(flightSD.toFixed(2));
     $("#n1").val(dwell.length);
     $("#n2").val(flight.length);
+    console.log(dwell);
     $("form").submit();
+
+    up = [];
+    down = [];
+    dwell = [];
+    flight = [];
+    dwellAvg = 0;
+    flightAvg = 0;
+    dwellSD = 0;
+    flightSD = 0;
 }

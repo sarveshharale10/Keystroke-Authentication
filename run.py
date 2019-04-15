@@ -29,14 +29,14 @@ def login():
         
         criticalDwell = t.ppf(0.99,v1)
         criticalFlight = t.ppf(0.99,v2)
-
-        if(abs(tStatisticDwell) < criticalDwell and abs(tStatisticFlight) < criticalFlight):
-            flash("Successful")
-        else:
-            flash("Unsuccessful")
+            
+        percentage1 = abs(tStatisticDwell) / criticalDwell
+        percentage2 = abs(tStatisticDwell) / criticalDwell
+        percentage = (((1 - percentage1) * 100) + ((1 - percentage2) * 100)) / 2
+        string = "Confidence "+str(int(percentage))+"%"
+        flash(string)
         return redirect("/login")
-
-        #return str(tStatisticDwell)+" "+str(criticalDwell)+" "+str(tStatisticFlight)+" "+str(criticalFlight)
+        
     return render_template("login.html",title="Login")
 
 @app.route("/register",methods=['GET','POST'])
